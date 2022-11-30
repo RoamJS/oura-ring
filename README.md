@@ -30,4 +30,4 @@ You can also import the data by creating a button by typing `{{import oura ring}
 
 ## Demo
 
-<video src="https://firebasestorage.googleapis.com/v0/b/firescript-577a2.appspot.com/o/imgs%2Fapp%2Froamjs%2F6xdu8b9NhO.mp4" controls="controls" height="600"></video>
+<video src="https://firebasestorage.googleapis.com/v0/b/firescript-577a2.appspot.com/o/imgs%2Fapp%2Froamjs%2FbX0WIBA2Kg.mp4" controls="controls" height="600"></video>
