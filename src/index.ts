@@ -30,7 +30,7 @@ export default runExtension({
           name: "Toggle attributes",
           description:
             "Toggles the usage of attributes on import.",
-          action: { type: "checkbox" },
+          action: { type: "switch" },
         },
       ],
     });
@@ -139,7 +139,7 @@ export default runExtension({
       ])
         .then(([sleepData, activityData, readinessData]) => {
           const sleep = sleepData.sleep[0];
-          const attributeColon = useAttributes ? '::' : ':';
+          const attributeColon = useAttributes ? ':' : '::';
           if (!sleep) {
             bullets.push(
               `There is no sleep data available for ${formattedDate}`
