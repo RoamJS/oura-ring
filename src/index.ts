@@ -25,6 +25,13 @@ export default runExtension({
             "Your Oura Ring personal access token, accessible from https://cloud.ouraring.com/personal-access-tokens.",
           action: { type: "input", placeholder: "xxxxxx" },
         },
+        {
+          id: "use-attributes",
+          name: "Use plain text",
+          description:
+            "Toggles the usage of attributes on import.",
+          action: { type: "switch" },
+        },
       ],
     });
 
@@ -45,6 +52,7 @@ export default runExtension({
       const pageTitle = getPageTitleByBlockUid(blockUid);
       const dateFromPage = window.roamAlphaAPI.util.pageTitleToDate(pageTitle);
       const token = args.extensionAPI.settings.get("token");
+      const useAttributes = args.extensionAPI.settings.get("use-attributes");
       if (!token) {
         window.roamAlphaAPI.updateBlock({
           block: {
@@ -131,6 +139,7 @@ export default runExtension({
       ])
         .then(([sleepData, activityData, readinessData]) => {
           const sleep = sleepData.sleep[0];
+          const attributeColon = useAttributes ? ':' : '::';
           if (!sleep) {
             bullets.push(
               `There is no sleep data available for ${formattedDate}`
@@ -140,20 +149,20 @@ export default runExtension({
             const formattedStart = format(new Date(bedtime_start), "hh:mm:ss");
             const formattedEnd = format(new Date(bedtime_end), "hh:mm:ss");
             bullets.push(
-              `Bedtime Start:: ${formattedStart}`,
-              `Bedtime End:: ${formattedEnd}`,
-              `Sleep Score:: ${sleep.score}`,
-              `Sleep Efficiency:: ${sleep.efficiency}`,
-              `Sleep Duration:: ${secondsToTimeString(sleep.duration)}`,
-              `Total Sleep:: ${secondsToTimeString(sleep.total)}`,
-              `Total Awake:: ${secondsToTimeString(sleep.awake)}`,
-              `Sleep Latency:: ${secondsToTimeString(sleep.onset_latency)}`,
-              `Light Sleep:: ${secondsToTimeString(sleep.light)}`,
-              `Rem Sleep:: ${secondsToTimeString(sleep.rem)}`,
-              `Deep Sleep:: ${secondsToTimeString(sleep.deep)}`,
-              `Resting Heart Rate:: ${sleep.hr_lowest}`,
-              `Average Heart Rate:: ${sleep.hr_average}`,
-              `Heart Rate Variability:: ${sleep.rmssd}`
+              `Bedtime Start${attributeColon} ${formattedStart}`,
+              `Bedtime End${attributeColon} ${formattedEnd}`,
+              `Sleep Score${attributeColon} ${sleep.score}`,
+              `Sleep Efficiency${attributeColon} ${sleep.efficiency}`,
+              `Sleep Duration${attributeColon} ${secondsToTimeString(sleep.duration)}`,
+              `Total Sleep${attributeColon} ${secondsToTimeString(sleep.total)}`,
+              `Total Awake${attributeColon} ${secondsToTimeString(sleep.awake)}`,
+              `Sleep Latency${attributeColon} ${secondsToTimeString(sleep.onset_latency)}`,
+              `Light Sleep${attributeColon} ${secondsToTimeString(sleep.light)}`,
+              `Rem Sleep${attributeColon} ${secondsToTimeString(sleep.rem)}`,
+              `Deep Sleep${attributeColon} ${secondsToTimeString(sleep.deep)}`,
+              `Resting Heart Rate${attributeColon} ${sleep.hr_lowest}`,
+              `Average Heart Rate${attributeColon} ${sleep.hr_average}`,
+              `Heart Rate Variability${attributeColon} ${sleep.rmssd}`
             );
           }
 
@@ -167,14 +176,14 @@ export default runExtension({
             const formattedStart = format(new Date(day_start), "hh:mm:ss");
             const formattedEnd = format(new Date(day_end), "hh:mm:ss");
             bullets.push(
-              `Day Start:: ${formattedStart}`,
-              `Day End:: ${formattedEnd}`,
-              `Activity Score:: ${activity.score}`,
-              `Low Activity:: ${secondsToTimeString(activity.low * 60)}`,
-              `Medium Activity:: ${secondsToTimeString(activity.medium * 60)}`,
-              `High Activity:: ${secondsToTimeString(activity.high * 60)}`,
-              `Rest Activity:: ${secondsToTimeString(activity.rest * 60)}`,
-              `Steps:: ${activity.steps}`
+              `Day Start${attributeColon} ${formattedStart}`,
+              `Day End${attributeColon} ${formattedEnd}`,
+              `Activity Score${attributeColon} ${activity.score}`,
+              `Low Activity${attributeColon} ${secondsToTimeString(activity.low * 60)}`,
+              `Medium Activity${attributeColon} ${secondsToTimeString(activity.medium * 60)}`,
+              `High Activity${attributeColon} ${secondsToTimeString(activity.high * 60)}`,
+              `Rest Activity${attributeColon} ${secondsToTimeString(activity.rest * 60)}`,
+              `Steps${attributeColon} ${activity.steps}`
             );
           }
 
@@ -184,7 +193,7 @@ export default runExtension({
               `There is no activity data available for ${formattedDate}`
             );
           } else {
-            bullets.push(`Readiness Score:: ${readiness.score}`);
+            bullets.push(`Readiness Score${attributeColon} ${readiness.score}`);
           }
 
           const base = getOrderByBlockUid(blockUid);
