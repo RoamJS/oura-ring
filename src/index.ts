@@ -27,7 +27,7 @@ export default runExtension({
         },
         {
           id: "use-attributes",
-          name: "Toggle attributes",
+          name: "Use plain text",
           description:
             "Toggles the usage of attributes on import.",
           action: { type: "switch" },
