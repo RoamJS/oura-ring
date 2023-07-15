@@ -30,4 +30,4 @@ You can also import the data by creating a button by typing `{{import oura ring}
 
 ## Demo
 
-<video src="https://firebasestorage.googleapis.com/v0/b/firescript-577a2.appspot.com/o/imgs%2Fapp%2Froamjs%2FbX0WIBA2Kg.mp4?alt=media&token=6addaeb9-ceaf-43db-b840-4ad06faa0477" controls="controls" height="600"></video>
+![roamjs-oura-ring-demo](https://github.com/RoamJS/oura-ring/assets/3792666/5890073d-aac2-4bdd-a5e3-3ac320cdbf92)

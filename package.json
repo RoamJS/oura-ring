@@ -4,15 +4,15 @@
   "description": "Description for oura-ring.",
   "main": "./build/main.js",
   "scripts": {
+    "start": "samepage dev",
     "prebuild:roam": "npm install",
-    "build:roam": "roamjs-scripts build --depot",
-    "start": "roamjs-scripts dev --depot"
+    "build:roam": "samepage build --dry"
   },
   "license": "MIT",
-  "devDependencies": {
-    "roamjs-scripts": "^0.24.3"
-  },
   "dependencies": {
     "roamjs-components": "^0.74.19"
+  },
+  "samepage": {
+    "extends": "node_modules/roamjs-components/package.json"
   }
 }
