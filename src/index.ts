@@ -113,7 +113,8 @@ export default runExtension(async (args) => {
       dateFromPage && !isNaN(dateFromPage.valueOf())
         ? dateFromPage
         : new Date();
-    const formattedDate = format(subDays(dateToUse, 1), "yyyy-MM-dd");
+    const formattedStartDate = format(subDays(dateToUse, 1), "yyyy-MM-dd");
+    const formattedEndDate = format(dateToUse, "yyyy-MM-dd");
     const bullets: string[] = [];
     const fetchData = <T extends OuraEndpoint>(
       dataType: T
@@ -122,9 +123,8 @@ export default runExtension(async (args) => {
         domain: API_DOMAIN,
         path: `apps/oura`,
         data: {
-          date: formattedDate, // TODO - need more data
-          startDate: formattedDate,
-          endDate: formattedDate,
+          startDate: formattedStartDate,
+          endDate: formattedEndDate,
           token,
           dataType,
         },
@@ -148,7 +148,9 @@ export default runExtension(async (args) => {
       // Daily Sleep
       const dailySleep = dailySleepData.data[0];
       if (!dailySleep) {
-        bullets.push(`There is no sleep data available for ${formattedDate}`);
+        bullets.push(
+          `There is no Daily Sleep data available for ${formattedStartDate}`
+        );
       } else {
         const deepSleep = secondsToTimeString(
           dailySleep.contributors.deep_sleep
@@ -166,7 +168,9 @@ export default runExtension(async (args) => {
       // Sleep
       const sleep = sleepData.data[0];
       if (!sleep) {
-        bullets.push(`There is no sleep data available for ${formattedDate}`);
+        bullets.push(
+          `There is no Sleep data available for ${formattedStartDate}`
+        );
       } else {
         const formattedStart = format(
           new Date(sleep.bedtime_start),
@@ -202,7 +206,7 @@ export default runExtension(async (args) => {
       const activity = dailyActivityData.data[0];
       if (!activity) {
         bullets.push(
-          `There is no activity data available for ${formattedDate}`
+          `There is no Daily Activity data available for ${formattedStartDate}`
         );
       } else {
         const formattedDay = format(new Date(activity.day), "hh:mm:ss");
@@ -226,7 +230,7 @@ export default runExtension(async (args) => {
       const readiness = dailyReadinessData.data[0];
       if (!readiness) {
         bullets.push(
-          `There is no activity data available for ${formattedDate}`
+          `There is no Daily Readiness data available for ${formattedStartDate}`
         );
       } else {
         bullets.push(bullet(`Readiness Score`, readiness.score));
