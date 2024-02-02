@@ -4,6 +4,8 @@ Import your Oura Ring daily summaries on a given day into your daily note page!
 
 ## Usage
 
+> Warning: as of v1.1.0 (2024-02) this extension will send your personal access token to SamePage's backend in order while importing your Oura data. We do not store your personal access token.
+
 You'll first need to add your personal access token associated with your Oura Ring account to the `Token` field in your Roam Depot Settings. The extension needs this in order to access your personal data. [Click here](https://cloud.ouraring.com/personal-access-tokens), to generate your own personal access token.
 
 To import your Oura Ring data to your daily note page, open the Command Palette and enter "Import Oura Ring". If the current page is a Daily note page, it will query the day before the page title, since you usually want to track last night's sleep. Otherwise, it will query yesterday's data by default. It will output the following text:
