@@ -2,9 +2,15 @@
 
 Import your Oura Ring daily summaries on a given day into your daily note page!
 
-## Usage
+## Important Notice
 
-> Warning: as of v1.1.0 (2024-02) this extension will route your personal access token through SamePage's backend while importing your Oura data. We do not store your personal access token.
+> As of v1.1.0 (2024-02), this extension will route your personal access token through SamePage's backend while importing your Oura data.
+
+This change is necessary to comply with Oura's security policies. If you would like to see exactly what is happening, please refer to our [open source endpoint](https://github.com/samepage-network/samepage.network/blob/main/api/apps/oura/get.ts).
+
+We take your privacy seriously, and your personal access token is only used temporarily during the data import process. It is not stored with us nor shared with or any third parties.
+
+## Usage
 
 You'll first need to add your personal access token associated with your Oura Ring account to the `Token` field in your Roam Depot Settings. The extension needs this in order to access your personal data. [Click here](https://cloud.ouraring.com/personal-access-tokens), to generate your own personal access token.
 
