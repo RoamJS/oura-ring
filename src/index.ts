@@ -1,7 +1,7 @@
 import runExtension from "roamjs-components/util/runExtension";
 import getChildrenLengthByParentUid from "roamjs-components/queries/getChildrenLengthByParentUid";
 import format from "date-fns/format";
-import subDays from "date-fns/subDays";
+import addDays from "date-fns/addDays";
 import getPageTitleByBlockUid from "roamjs-components/queries/getPageTitleByBlockUid";
 import getParentUidByBlockUid from "roamjs-components/queries/getParentUidByBlockUid";
 import updateBlock from "roamjs-components/writes/updateBlock";
@@ -113,8 +113,8 @@ export default runExtension(async (args) => {
       dateFromPage && !isNaN(dateFromPage.valueOf())
         ? dateFromPage
         : new Date();
-    const formattedStartDate = format(subDays(dateToUse, 1), "yyyy-MM-dd");
-    const formattedEndDate = format(dateToUse, "yyyy-MM-dd");
+    const formattedStartDate = format(dateToUse, "yyyy-MM-dd");
+    const formattedEndDate = format(addDays(dateToUse, 1), "yyyy-MM-dd");
     const bullets: string[] = [];
     const fetchData = <T extends OuraEndpoint>(
       dataType: T
