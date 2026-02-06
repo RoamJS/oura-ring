@@ -1,6 +1,12 @@
+<a href="https://roamjs.com/">
+    <img src="https://avatars.githubusercontent.com/u/138642184" alt="RoamJS Logo" title="RoamJS" align="right" height="60" />
+</a>
+
 # Oura Ring
 
-Import your Oura Ring daily summaries on a given day into your daily note page!
+**Import Oura Ring daily summaries into Roam. Pull in sleep, activity, and readiness metrics into your Daily Notes as attributes or plain text.**
+
+[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/RoamJS/oura-ring)
 
 ## Important Notice
 
